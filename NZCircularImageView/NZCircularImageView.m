@@ -130,6 +130,12 @@
     CGFloat height = CGRectGetHeight(self.frame) * scale;
     
     NSMutableString *mStringUrl = [[NSMutableString alloc] initWithString:stringUrl];
+    
+    NSString *queryDelimiter = @"?";
+    if ([stringUrl rangeOfString:@"?"].location != NSNotFound) {
+        queryDelimiter = @"&";
+    }
+    [mStringUrl appendFormat:@"%@width=%.0f", queryDelimiter,  width];
     [mStringUrl appendFormat:@"?width=%.0f", width];
     [mStringUrl appendFormat:@"&height=%.0f", height];
     [mStringUrl appendString:@"&mode=crop"];
